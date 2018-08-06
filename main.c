@@ -33,16 +33,6 @@ void matriz_de_arquivo(unsigned int n, unsigned int adjacencias[n][n], char* cam
 
 }
 
-void busca_em_largura(unsigned int n, unsigned int adjacencias[n][n], unsigned int raiz)
-{
-	printf("imprime vertices usando busca em largura, a partir do vertice raiz\n");
-}
-
-void busca_em_profundidade(unsigned int n, unsigned int adjacencias[n][n], unsigned int raiz)
-{
-	printf("imprime vertices usando busca em profundidade, a partir do vertice raiz\n");
-}
-
 void push(unsigned int n, unsigned int* cabeca, unsigned int* cauda, unsigned int fila[n], unsigned int valor)
 {
 	// caso da fila cheia
@@ -78,6 +68,16 @@ int pop(unsigned int n, unsigned int* cabeca, unsigned int* cauda, unsigned int 
 	retorno = fila[*cabeca % n];
 	*cabeca = *cabeca + 1;
 	return retorno;
+}
+
+void busca_em_largura(unsigned int n, unsigned int adjacencias[n][n], unsigned int raiz)
+{
+	printf("imprime vertices usando busca em largura, a partir do vertice raiz\n");
+}
+
+void busca_em_profundidade(unsigned int n, unsigned int adjacencias[n][n], unsigned int raiz)
+{
+	printf("imprime vertices usando busca em profundidade, a partir do vertice raiz\n");
 }
 
 int main()
