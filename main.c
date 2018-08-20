@@ -72,7 +72,36 @@ int pop(unsigned int n, unsigned int* cabeca, unsigned int* cauda, unsigned int 
 
 void busca_em_largura(unsigned int n, unsigned int adjacencias[n][n], unsigned int raiz)
 {
-	printf("imprime vertices usando busca em largura, a partir do vertice raiz\n");
+	unsigned int enfileirado[n];
+	unsigned int i, atual;
+	unsigned int cabeca = 0;
+	unsigned int cauda = -1;
+	unsigned int fila[n];
+	
+	for (i = 0; i < n; i++)
+	{
+		enfileirado[i] = 0;
+	}
+
+	push(n, &cabeca, &cauda, fila, raiz);
+	enfileirado[raiz] = 1;
+	
+	// enquanto existem elementos na fila
+	while ((atual = pop(n, &cabeca, &cauda, fila)) != -1)
+	{
+		// imprime o elemento atual
+		printf("%d\t", atual);
+		
+		for (i = 0; i < n; i++)
+		{
+			// se i possui uma aresta e ainda nao foi enfileirado, adicione na fila e marque como enfileirado
+			if (adjacencias[i][atual] > 0 && enfileirado[i] == 0)
+			{
+				push(n, &cabeca, &cauda, fila, i);
+				enfileirado[i] = 1;
+			}
+		}
+	}
 }
 
 void busca_em_profundidade(unsigned int n, unsigned int adjacencias[n][n], unsigned int raiz)
@@ -83,41 +112,18 @@ void busca_em_profundidade(unsigned int n, unsigned int adjacencias[n][n], unsig
 int main()
 {
 	
-	unsigned int n = 5;
+	unsigned int n = 7;
 	unsigned int adjacencias[n][n];
 	
-	matriz_de_arquivo(n, adjacencias, "instancia1.txt");
+	matriz_de_arquivo(n, adjacencias, "instancia2.txt");
 	
 	imprime_matriz(n, adjacencias);
+	
+	printf("\nBusca em largura: ");
 	busca_em_largura(n, adjacencias, 3);
+	
 	busca_em_profundidade(n, adjacencias, 3);
 	
-	unsigned int cabeca = 0;
-	unsigned int cauda = -1;
-	unsigned int fila[n];
-	
-	// teste da fila
-	push(n, &cabeca, &cauda, fila, 7);
-	push(n, &cabeca, &cauda, fila, 2);
-	push(n, &cabeca, &cauda, fila, 9);
-	push(n, &cabeca, &cauda, fila, 8);
-	push(n, &cabeca, &cauda, fila, 5);
-	push(n, &cabeca, &cauda, fila, 11);
-	push(n, &cabeca, &cauda, fila, 22);
-	
-	printf("%d\n", pop(n, &cabeca, &cauda, fila));
-	printf("%d\n", pop(n, &cabeca, &cauda, fila));
-	printf("%d\n", pop(n, &cabeca, &cauda, fila));
-	printf("%d\n", pop(n, &cabeca, &cauda, fila));
-	printf("%d\n", pop(n, &cabeca, &cauda, fila));
-	printf("%d\n", pop(n, &cabeca, &cauda, fila));
-	
-	push(n, &cabeca, &cauda, fila, 11);
-	push(n, &cabeca, &cauda, fila, 22);
-	
-	printf("%d\n", pop(n, &cabeca, &cauda, fila));
-	printf("%d\n", pop(n, &cabeca, &cauda, fila));
-		
 	return 0;
 }
 
