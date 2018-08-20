@@ -122,6 +122,13 @@ void busca_em_profundidade(unsigned int n, unsigned int adjacencias[n][n], unsig
 	
 }
 
+unsigned int verifica_arvore(unsigned int n, unsigned int adjacencias[n][n], unsigned int raiz)
+{
+	// retorne 0 se não for arvore e 1 se for
+	return 0;
+}
+
+
 int main()
 {
 	
@@ -143,6 +150,10 @@ int main()
 	printf("\nBusca em profundidade: ");
 	busca_em_profundidade(n, adjacencias, 3, visitado);
 	
+	if (verifica_arvore(n, adjacencias, 3))
+		printf("\n\nO grafo e uma arvore\n");
+	else
+		printf("\n\nO grafo nao e uma arvore\n");
 	return 0;
 }
 
