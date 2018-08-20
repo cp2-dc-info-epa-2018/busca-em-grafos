@@ -104,25 +104,44 @@ void busca_em_largura(unsigned int n, unsigned int adjacencias[n][n], unsigned i
 	}
 }
 
-void busca_em_profundidade(unsigned int n, unsigned int adjacencias[n][n], unsigned int raiz)
+void busca_em_profundidade(unsigned int n, unsigned int adjacencias[n][n], unsigned int raiz, unsigned int visitado[n])
 {
-	printf("imprime vertices usando busca em profundidade, a partir do vertice raiz\n");
+	unsigned int i;
+
+	printf("%d\t", raiz);
+	visitado[raiz] = 1;
+
+	for (i = 0; i < n; i++)
+	{
+		// se i possui uma aresta e ainda nao foi visitado, visite
+		if (adjacencias[i][raiz] > 0 && visitado[i] == 0)
+		{
+			busca_em_profundidade(n, adjacencias, i, visitado);
+		}
+	}
+	
 }
 
 int main()
 {
 	
-	unsigned int n = 7;
+	unsigned int n = 5;
 	unsigned int adjacencias[n][n];
+	unsigned int visitado[n];
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+		visitado[i] = 0;
 	
-	matriz_de_arquivo(n, adjacencias, "instancia2.txt");
+	matriz_de_arquivo(n, adjacencias, "instancia1.txt");
 	
 	imprime_matriz(n, adjacencias);
 	
 	printf("\nBusca em largura: ");
 	busca_em_largura(n, adjacencias, 3);
 	
-	busca_em_profundidade(n, adjacencias, 3);
+	printf("\nBusca em profundidade: ");
+	busca_em_profundidade(n, adjacencias, 3, visitado);
 	
 	return 0;
 }
