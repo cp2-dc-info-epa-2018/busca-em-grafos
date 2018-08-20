@@ -3,7 +3,7 @@
 
 O objetivo desta tarefa é a pratica de algortimos em grafos. Para isso deverão ser implementadas as seguintes tarefas de busca:
 
-- [ ] Busca em Largura
+- [x] Busca em Largura
 - [ ] Busca em Profundidade
 
 Utilize o programa `gerador.c` para gerar novos grafos. A partir do terminal, com o arquivo compilado digite:
